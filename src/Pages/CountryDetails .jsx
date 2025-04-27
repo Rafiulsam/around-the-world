@@ -85,7 +85,7 @@ const CountryDetails = () => {
         <div className="p-6 max-w-6xl mx-auto">
             <button
                 onClick={() => navigate(-1)}
-                className="mb-6 px-4 py-2 border rounded hover:bg-gray-100 transition"
+                className="mb-6 px-4 py-2 border rounded hover:bg-gray-100 dark:hover:bg-zinc-600 transition"
             >
                 ← Back
             </button>
@@ -93,7 +93,7 @@ const CountryDetails = () => {
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="flex justify-between items-center gap-10 border rounded-lg p-6 shadow-md bg-gray-100"
+                className="flex justify-between items-center gap-10 border rounded-lg p-6 shadow-md bg-gray-100 dark:bg-zinc-800"
             >
                 <img
                     src={flags.svg}
@@ -125,7 +125,7 @@ const CountryDetails = () => {
                                 <Link
                                     key={border.cca3}
                                     to={`/country/${border.cca3}`}
-                                    className="px-3 py-1 border rounded hover:bg-gray-200 transition"
+                                    className="px-3 py-1 border rounded hover:bg-gray-200 dark:hover:bg-zinc-600 transition"
                                 >
                                     {border.name.common}
                                 </Link>

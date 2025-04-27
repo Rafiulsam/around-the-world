@@ -47,7 +47,7 @@ const Home = () => {
     <div className="p-6 container mx-auto">
       <div className="flex justify-center items-center">
         <h1 className="text-4xl font-bold text-center my-10">Around the World</h1>
-        <img className="h-full" src="./earth.gif" alt="" />
+        <img className="h-12 ml-3" src="./earth.gif" alt="earth" />
       </div>
       <div className="flex flex-col justify-center md:flex-row mb-20 gap-6">
         <div className="relative">
@@ -57,13 +57,13 @@ const Home = () => {
             placeholder="Search by country name..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 p-2 border rounded w-80"
+            className="pl-10 p-2 border rounded w-80 dark:bg-zinc-800"
           />
         </div>
         <div className="relative">
           <button
             onClick={() => setShowSortMenu((prev) => !prev)}
-            className="p-2 border bg-gray-100 rounded text-left flex items-center gap-3"
+            className="p-2 border bg-gray-100 dark:bg-zinc-800 rounded text-left flex items-center gap-3"
           >
             Sort by: {sortBy.charAt(0).toUpperCase() + sortBy.slice(1)}
             <FaAngleDown className={`transition-transform ${showSortMenu ? "rotate-180" : ""}`} />
@@ -97,10 +97,12 @@ const Home = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {currentCountries.map((country, index) => (
+        {currentCountries.length=== 0 ? (<div className="col-span-full text-center text-2xl font-semibold dark:text-white">
+      No countries found.
+    </div>) : (currentCountries.map((country, index) => (
           <Link to={`/country/${country.cca3}`} key={index}>
             <motion.div
-              className="border rounded p-4 shadow-sm hover:shadow-lg bg-gray-100 h-full"
+              className="border rounded p-4 shadow-sm hover:shadow-lg bg-gray-100 dark:bg-zinc-800 dark:hover:shadow-lg dark:hover:shadow-gray-500 h-full"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: index * 0.03, duration: 0.4 }}
@@ -116,7 +118,7 @@ const Home = () => {
               <p><strong>Area:</strong> {country.area.toLocaleString()} km²</p>
             </motion.div>
           </Link>
-        ))}
+        )))}
       </div>
 
       {/* Pagination controls using React Paginate */}
