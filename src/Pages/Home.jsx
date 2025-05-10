@@ -53,10 +53,10 @@ const Home = () => {
   return (
     <div className="p-6 container mx-auto">
       <div className="flex justify-center items-center">
-        <h1 className=" text-xl md:text-4xl font-bold text-center my-10">Around the World</h1>
+        <h1 className=" text-2xl md:text-4xl font-bold text-center my-10">Around the World</h1>
         <img className="h-8 md:h-12 ml-3" src="./earth.gif" alt="earth" />
       </div>
-      <div className="flex flex-col justify-center md:flex-row mb-20 gap-6">
+      <div className="flex flex-col justify-center md:flex-row mb-10 md:mb-20 gap-6">
         <div className="relative">
           <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
           <input
@@ -70,7 +70,7 @@ const Home = () => {
         <div className="relative">
           <button
             onClick={() => setShowSortMenu((prev) => !prev)}
-            className="md:p-2 text-sm md:text-base md:border md:bg-gray-100 dark:bg-zinc-800 rounded text-left flex items-center gap-3"
+            className="md:p-2 text-sm md:text-base md:border md:bg-gray-100 md:dark:bg-zinc-800 rounded text-left flex items-center gap-3"
           >
             Sort by: {sortBy.charAt(0).toUpperCase() + sortBy.slice(1)}
             <FaAngleDown className={`transition-transform ${showSortMenu ? "rotate-180" : ""}`} />
@@ -104,8 +104,8 @@ const Home = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {loading ? (<div className="col-span-full text-center text-2xl font-semibold dark:text-white">
-    Loading Countries...
+        {loading ? (<div className="col-span-full text-center text-lg md:text-2xl font-semibold dark:text-white">
+    Loading Countries please wait...
   </div>):(currentCountries.length=== 0 ? (<div className="col-span-full text-center text-2xl font-semibold dark:text-white">
       No countries found.
     </div>) : (currentCountries.map((country, index) => (

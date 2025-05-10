@@ -5,6 +5,18 @@ import LoadingPage from "./LoadingPage";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconUrl: markerIcon,
+  iconRetinaUrl: markerIcon2x,
+  shadowUrl: markerShadow,
+});
+
 
 
 const CountryDetails = () => {
@@ -86,7 +98,7 @@ const CountryDetails = () => {
         <div className="p-6 max-w-6xl mx-auto">
             <div className="relative  flex items-center">
                 <h1 className=" text-lg font-bold">Around the World</h1>
-                <img className="h-4 ml-3" src="/public/earth.gif" alt="earth" />
+                <img className="h-4 ml-3" src="/earth.gif" alt="earth" />
             </div>
                 <button
                     onClick={() => navigate("/")}
