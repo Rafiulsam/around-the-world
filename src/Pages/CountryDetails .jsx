@@ -150,7 +150,7 @@ const CountryDetails = () => {
                             ))}
                         </div>
                     )}
-                    <div className="bg-gray-200 p-4 rounded-lg shadow-md">
+                    <div className="bg-gray-200 dark:bg-zinc-700 p-4 rounded-lg shadow-md">
                         <h2 className="text-2xl font-semibold mb-4">Location Map</h2>
                         <div
                             ref={mapRef}
