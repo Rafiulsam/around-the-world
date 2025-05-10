@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaAngleDown, FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import ReactPaginate from "react-paginate"; // Import react-paginate
+import ReactPaginate from "react-paginate";
 
 const Home = () => {
   const [countries, setCountries] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("name");
   const [showSortMenu, setShowSortMenu] = useState(false);
@@ -15,8 +16,14 @@ const Home = () => {
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
       .then((res) => res.json())
-      .then((data) => setCountries(data))
-      .catch((err) => console.error("Error fetching countries:", err));
+      .then((data) => {
+        setCountries(data)
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching countries:", err)
+        setLoading(false);
+      });
   }, []);
 
   const filteredAndSorted = countries
@@ -46,8 +53,8 @@ const Home = () => {
   return (
     <div className="p-6 container mx-auto">
       <div className="flex justify-center items-center">
-        <h1 className="text-4xl font-bold text-center my-10">Around the World</h1>
-        <img className="h-12 ml-3" src="./earth.gif" alt="earth" />
+        <h1 className=" text-xl md:text-4xl font-bold text-center my-10">Around the World</h1>
+        <img className="h-8 md:h-12 ml-3" src="./earth.gif" alt="earth" />
       </div>
       <div className="flex flex-col justify-center md:flex-row mb-20 gap-6">
         <div className="relative">
@@ -63,7 +70,7 @@ const Home = () => {
         <div className="relative">
           <button
             onClick={() => setShowSortMenu((prev) => !prev)}
-            className="p-2 border bg-gray-100 dark:bg-zinc-800 rounded text-left flex items-center gap-3"
+            className="md:p-2 text-sm md:text-base md:border md:bg-gray-100 dark:bg-zinc-800 rounded text-left flex items-center gap-3"
           >
             Sort by: {sortBy.charAt(0).toUpperCase() + sortBy.slice(1)}
             <FaAngleDown className={`transition-transform ${showSortMenu ? "rotate-180" : ""}`} />
@@ -97,7 +104,9 @@ const Home = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {currentCountries.length=== 0 ? (<div className="col-span-full text-center text-2xl font-semibold dark:text-white">
+        {loading ? (<div className="col-span-full text-center text-2xl font-semibold dark:text-white">
+    Loading Countries...
+  </div>):(currentCountries.length=== 0 ? (<div className="col-span-full text-center text-2xl font-semibold dark:text-white">
       No countries found.
     </div>) : (currentCountries.map((country, index) => (
           <Link to={`/country/${country.cca3}`} key={index}>
@@ -118,26 +127,26 @@ const Home = () => {
               <p><strong>Area:</strong> {country.area.toLocaleString()} km²</p>
             </motion.div>
           </Link>
-        )))}
+        ))))}
       </div>
 
       {/* Pagination controls using React Paginate */}
-      <div className="mt-20">
-        <ReactPaginate
-          previousLabel={"Previous"}
-          nextLabel={"Next"}
-          breakLabel={"..."}
-          pageCount={Math.ceil(filteredAndSorted.length / countriesPerPage)}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
-          onPageChange={handlePageClick} 
-          containerClassName={"flex justify-center space-x-4"}
-          pageClassName={"px-4 py-2 border rounded"}
-          previousClassName={"px-4 py-2 border rounded"}
-          nextClassName={"px-4 py-2 border rounded"}
-          activeClassName={"bg-gray-500 text-white"}
-        />
-      </div>
+      <div className="mt-20 w-full px-4">
+  <ReactPaginate
+    previousLabel={"←"}
+    nextLabel={"→"}
+    breakLabel={"..."}
+    pageCount={Math.ceil(filteredAndSorted.length / countriesPerPage)}
+    marginPagesDisplayed={1}
+    pageRangeDisplayed={3}
+    onPageChange={handlePageClick}
+    containerClassName="flex flex-wrap justify-center items-center gap-1 text-sm sm:gap-2"
+    pageClassName="px-2 py-1 border rounded text-xs sm:px-3 sm:py-1.5"
+    previousClassName="px-2 py-1 border rounded text-xs sm:px-3 sm:py-1.5"
+    nextClassName="px-2 py-1 border rounded text-xs sm:px-3 sm:py-1.5"
+    activeClassName="bg-gray-500 text-white"
+  />
+</div>
     </div>
   );
 };

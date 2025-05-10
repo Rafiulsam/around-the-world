@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import LoadingPage from "./LoadingPage";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 
 const CountryDetails = () => {
@@ -83,31 +84,36 @@ const CountryDetails = () => {
 
     return (
         <div className="p-6 max-w-6xl mx-auto">
-            <button
-                onClick={() => navigate(-1)}
-                className="mb-6 px-4 py-2 border rounded hover:bg-gray-100 dark:hover:bg-zinc-600 transition"
-            >
-                ← Back
-            </button>
+            <div className="relative  flex items-center">
+                <h1 className=" text-lg font-bold">Around the World</h1>
+                <img className="h-4 ml-3" src="/public/earth.gif" alt="earth" />
+            </div>
+                <button
+                    onClick={() => navigate("/")}
+                    className="flex items-center my-6 px-4 py-2 border rounded hover:bg-gray-100 dark:hover:bg-zinc-600 transition"
+                >
+                   <IoIosArrowRoundBack /> Back
+                </button>
+            
 
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="flex justify-between items-center gap-10 border rounded-lg p-6 shadow-md bg-gray-100 dark:bg-zinc-800"
+                className="flex flex-col lg:flex-row justify-between items-center gap-10 border rounded-lg p-4 md:p-6 shadow-md bg-gray-100 dark:bg-zinc-800"
             >
                 <img
                     src={flags.svg}
                     alt={name.common}
                     className="h-72 object-cover rounded mb-4"
                 />
-                <div className="space-y-2 w-1/2">
-                    <h1 className="text-3xl font-bold">{name.common} ({name.official})<span className="ml-2 text-sm text-gray-500">
+                <div className="space-y-2 md:w-1/2">
+                    <h1 className="text-xl md:text-3xl font-bold">{name.common} ({name.official})<span className="ml-2 text-sm text-gray-500">
                         {/* Display the native name if available */}
                         {name.nativeName && name.nativeName[Object.keys(name.nativeName)[0]]?.common}
                     </span> </h1>
-                  
-                  
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+
+                    <div className="text-sm md:text-base grid grid-cols-2 md:gap-4">
                         <p><strong>Population:</strong> {population.toLocaleString()}</p>
                         <p><strong>Area:</strong> {area.toLocaleString()} km²</p>
                         <p><strong>Region:</strong> {region}</p>
@@ -116,10 +122,10 @@ const CountryDetails = () => {
                         <p><strong>Timezones:</strong> {timezones?.join(", ")}</p>
                         <p><strong>Languages:</strong> {languages && Object.values(languages).join(", ")}</p>
                         <p><strong>Currencies:</strong> {currencies && Object.values(currencies).map(cur => `${cur.name} (${cur.symbol})`).join(", ")}</p>
-                        <p><strong>Top Level Domain:</strong> {tld[0]}</p>
+                        <p><strong>Top Level Domain:</strong> {tld ?  tld[0] :"N/A"}</p>
                     </div>
                     {borderCountries.length > 0 && (
-                        <div className="flex flex-wrap gap-2 mt-4">
+                        <div className="text-sm md:text-base flex flex-wrap gap-2 mt-4">
                             <strong className="w-full">Border Countries:</strong>
                             {borderCountries.map((border) => (
                                 <Link

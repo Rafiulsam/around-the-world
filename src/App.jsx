@@ -9,7 +9,7 @@ function App() {
     <>
       <button
         onClick={toggleTheme}
-        className="absolute top-4 right-10 p-2 rounded bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 dark:border transition duration-300 ease-in-out shadow-md hover:shadow-lg"
+        className="absolute top-4 right-3 text-xs md:text-sm md:right-10 p-1  md:p-2 rounded bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 dark:border transition duration-300 ease-in-out shadow-md hover:shadow-lg"
       >
         {theme === "dark" ? "🌞 Light Mood" : "🌚 Dark Mood"}
       </button>

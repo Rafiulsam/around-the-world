@@ -1,12 +1,31 @@
-# React + Vite
+# 🌍 Around the World
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive React-based country explorer web app that displays detailed information about every country using the [REST Countries API](https://restcountries.com/). Users can search, sort, and paginate through countries, and view maps and bordering nations.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔍 **Search** countries by name
+- ↕️ **Sort** by name, population, or area
+- 🗺️ **Interactive map** view of each country
+- 🌐 **Border countries** navigation
+- ⚡ Fast and fully responsive design
+- 🌙 Dark mode friendly (with Tailwind CSS)
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- Tailwind CSS
+- Framer Motion (animations)
+- React Router
+- Leaflet (interactive map)
+- React Paginate
+
+## 📦 Installation
+
+```bash
+npm install
+npm run dev
+```
+
+## 🔗 Live Demo
+[Click here to view live](https://around-the-w0rld.netlify.app/)
