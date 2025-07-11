@@ -14,7 +14,7 @@ const Home = () => {
   const countriesPerPage = 12;
 
   useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all")
+    fetch("https://restcountries.com/v3.1/all?fields=name,flags,population,area,region,cca3")
       .then((res) => res.json())
       .then((data) => {
         setCountries(data)
@@ -25,9 +25,8 @@ const Home = () => {
         setLoading(false);
       });
   }, []);
-
-  const filteredAndSorted = countries
-    .filter((country) =>
+console.log(countries);
+  const filteredAndSorted = countries.filter((country) =>
       country.name.common.toLowerCase().includes(searchQuery.toLowerCase())
     )
     .sort((a, b) => {
